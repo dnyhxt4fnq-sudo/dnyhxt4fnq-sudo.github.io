@@ -205,9 +205,9 @@
     var cg=x.createRadialGradient(cx,scy,0,cx,scy,R*1.0);cg.addColorStop(0,'rgba(210,212,255,0.3)');cg.addColorStop(0.5,'rgba(140,120,255,0.09)');cg.addColorStop(1,'rgba(120,110,255,0)');
     x.globalAlpha=1;x.fillStyle=cg;x.beginPath();x.arc(cx,scy,R*1.0,0,TAU);x.fill();
     var oc=Math.cos(rot*0.7+0.5),os=Math.sin(rot*0.7+0.5);
-    for(var j=0;j<outer.length;j++){var o=outer[j],X=o.x*oc+o.z*os,Z=-o.x*os+o.z*oc,Y=o.y*ct-Z*st,Z2=o.y*st+Z*ct,persp=1/(1.9-Z2*0.5),d=(Z2+1)/2,tw=0.4+0.6*(0.5+0.5*Math.sin(now*0.002+o.tw));
+    for(var j=0;j<outer.length;j++){var o=outer[j],wo=1+0.07*Math.sin(o.y*3+now*0.0022)+0.05*Math.sin(o.x*3.5-now*0.0018),ox=o.x*wo,oy=o.y*wo,oz=o.z*wo,X=ox*oc+oz*os,Z=-ox*os+oz*oc,Y=oy*ct-Z*st,Z2=oy*st+Z*ct,persp=1/(1.9-Z2*0.5),d=(Z2+1)/2,tw=0.4+0.6*(0.5+0.5*Math.sin(now*0.002+o.tw));
       dot(cx+X*R*persp,scy+Y*R*persp,(0.35+d*0.85)*DPR,(0.05+d*0.3)*tw);}
-    for(var i=0;i<N;i++){var pr=proj(pts[i]),d2=pr.d;
+    for(var i=0;i<N;i++){var p0=pts[i],wv=1+0.1*Math.sin(p0.y*3+now*0.0022)+0.065*Math.sin(p0.x*4-now*0.0018)+0.045*Math.sin(p0.z*3.5+now*0.0026),pr=proj({x:p0.x*wv,y:p0.y*wv,z:p0.z*wv}),d2=pr.d;
       dot(cx+pr.ox,scy+pr.oy,(0.45+d2*d2*1.2)*DPR,(0.13+Math.pow(d2,2.3)*0.82)*(0.86+0.14*Math.sin(now*0.004+i)));}
     x.globalAlpha=1;
   }
